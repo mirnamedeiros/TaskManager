@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateTaskTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="4" cellpadding="5" cellspacing="5">
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{taskController.selected.number}" title="#{bundle.CreateTaskTitle_number}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_number}"/>
+                    
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{taskController.selected.title}" title="#{bundle.CreateTaskTitle_title}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_title}"/>
+                    
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_description}" for="description" />
+                    <h:inputText id="description" value="#{taskController.selected.description}" title="#{bundle.CreateTaskTitle_description}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_description}"/>
+                    
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_responsible}" for="responsible" />
+                    <h:inputText id="responsible" value="#{taskController.selected.responsible}" title="#{bundle.CreateTaskTitle_responsible}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_responsible}"/>
+                    
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_priority}" for="priority" />
+                    <h:selectOneMenu id="priority" value="#{taskController.selected.priority}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_priority}"> 
+                        <f:selectItem itemValue = "1" itemLabel = "Alta" /> 
+                        <f:selectItem itemValue = "2" itemLabel = "Media" /> 
+                        <f:selectItem itemValue = "3" itemLabel = "Baixa" /> 
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="#{bundle.CreateTaskLabel_deadline}" for="deadline" />
+                    <h:inputText id="deadline" value="#{taskController.selected.deadline}" title="#{bundle.CreateTaskTitle_deadline}" required="true" requiredMessage="#{bundle.CreateTaskRequiredMessage_deadline}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandButton action="#{taskController.create}" value="#{bundle.CreateTaskSaveLink}"></h:commandButton>
+                <br />
+                <br />
+                <h:commandLink action="#{taskController.prepareList}" value="#{bundle.CreateTaskShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateTaskIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
