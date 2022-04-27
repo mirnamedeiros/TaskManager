@@ -46,11 +46,18 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListTaskEmpty}" rendered="#{taskController.items.rowCount == 0}"/>
+                <h:outputText escape="false" 
+                              value="#{bundle.ListTaskEmpty}" 
+                              rendered="#{taskController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{taskController.items.rowCount > 0}">
-                    <h:commandLink action="#{taskController.previous}" value="#{bundle.Previous} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{taskController.next}" value="#{bundle.Next} #{taskController.pagination.pageSize}" rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:commandLink action="#{taskController.previous}" 
+                                   value="#{bundle.Previous} #{taskController.pagination.pageSize}" 
+                                   rendered="#{taskController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{taskController.next}" 
+                                   value="#{bundle.Next} #{taskController.pagination.pageSize}" 
+                                   rendered="#{taskController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{taskController.items}" var="item" border="0" cellpadding="2" cellspacing="0" 
+                                 rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTaskTitle_number}"/>
@@ -73,13 +80,15 @@
                             <f:facet name="header">
                                 <h:outputText value="Actions"/>
                             </f:facet>
-                            <h:commandLink action="#{taskController.prepareView}" value="#{bundle.ListTaskViewLink}"/>
+                            
+                            <h:commandLink action="#{taskController.complete}" value="Complete"/>
                             <h:outputText value=" | "/>
                             <h:commandLink action="#{taskController.prepareEdit}" value="#{bundle.ListTaskEditLink}"/>
                             <h:outputText value=" |     "/>
                             <h:commandLink action="#{taskController.destroy}" value="#{bundle.ListTaskDestroyLink}"/>
                         </h:column>
                     </h:dataTable>
+                    
                 </h:panelGroup>
                 <br />
                 <h:commandButton action="#{taskController.prepareCreate}" value="#{bundle.ListTaskCreateLink}" styleClass="x-richButton"/>

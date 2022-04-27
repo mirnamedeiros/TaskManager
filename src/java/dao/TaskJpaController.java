@@ -9,6 +9,8 @@ import dao.exceptions.RollbackFailureException;
 import entity.Task;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -29,6 +31,7 @@ public class TaskJpaController implements Serializable {
     }
     private UserTransaction utx = null;
     private EntityManagerFactory emf = null;
+    private DataModel items;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -60,6 +63,7 @@ public class TaskJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
+            System.out.println("entrou");
             task = em.merge(task);
             utx.commit();
         } catch (Exception ex) {
@@ -157,4 +161,9 @@ public class TaskJpaController implements Serializable {
         }
     }
     
+    
+    public void findByNumber() {
+        EntityManager em = getEntityManager();
+        items = (DataModel) em.createNamedQuery("Task.findByNumber").getResultList();
+    }
 }

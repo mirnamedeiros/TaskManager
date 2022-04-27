@@ -34,12 +34,13 @@
                     </h:inputText>
                     
                 </h:panelGrid>
-                <h:commandButton action="#{taskController.update}" value="#{bundle.EditTaskSaveLink}"></h:commandButton>
+                <h:commandButton action="#{taskController.update}" value="#{bundle.EditTaskSaveLink}" styleClass="richButton"></h:commandButton>
                 <br />
                 <br />
                 <h:link outcome="View" value="#{bundle.EditTaskViewLink}"/>
                 <br />
-                <h:commandLink action="#{taskController.prepareList}" value="#{bundle.EditTaskShowAllLink}" immediate="true"/>
+                <br />
+                <h:commandButton action="#{taskController.prepareList}" value="Show All Tasks" styleClass="x-richButton"/>
                 
             </h:form>
         </ui:define>

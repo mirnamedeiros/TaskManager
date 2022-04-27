@@ -6,6 +6,7 @@ import jsf.classes.util.PaginationHelper;
 import bean.session.TaskFacade;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -17,6 +18,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.EntityManager;
 
 @Named("taskController")
 @SessionScoped
@@ -28,6 +30,8 @@ public class TaskController implements Serializable {
     private bean.session.TaskFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    private EntityManager em;
 
     public TaskController() {
     }
@@ -116,6 +120,20 @@ public class TaskController implements Serializable {
         return "List";
     }
 
+    public String complete() {
+        current = (Task) getItems().getRowData();
+        try {
+            current.setFinished(true);
+            getFacade().edit(current);
+            JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("TaskCompleted"));
+        } catch (Exception e) {
+            JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+        }
+        recreateModel();
+        recreatePagination();
+        return "List";
+    }
+    
     public String destroyAndView() {
         performDestroy();
         recreateModel();
@@ -128,7 +146,7 @@ public class TaskController implements Serializable {
             return "List";
         }
     }
-
+    
     private void performDestroy() {
         try {
             getFacade().remove(current);
@@ -137,6 +155,7 @@ public class TaskController implements Serializable {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
         }
     }
+    
 
     private void updateCurrentItem() {
         int count = getFacade().count();
@@ -179,7 +198,9 @@ public class TaskController implements Serializable {
         recreateModel();
         return "List";
     }
-
+    
+    
+    
     public SelectItem[] getItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), false);
     }
@@ -187,11 +208,11 @@ public class TaskController implements Serializable {
     public SelectItem[] getItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(ejbFacade.findAll(), true);
     }
-
+    
     public Task getTask(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
-
+    
     @FacesConverter(forClass = Task.class)
     public static class TaskControllerConverter implements Converter {
 
