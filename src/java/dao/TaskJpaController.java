@@ -5,7 +5,6 @@
 package dao;
 
 import dao.exceptions.NonexistentEntityException;
-import dao.exceptions.PreexistingEntityException;
 import dao.exceptions.RollbackFailureException;
 import entity.Task;
 import java.io.Serializable;
@@ -14,6 +13,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 
 /**
@@ -33,7 +34,7 @@ public class TaskJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Task task) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Task task) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -45,9 +46,6 @@ public class TaskJpaController implements Serializable {
                 utx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findTask(task.getNumber()) != null) {
-                throw new PreexistingEntityException("Task " + task + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -124,7 +122,9 @@ public class TaskJpaController implements Serializable {
     private List<Task> findTaskEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("select object(o) from Task as o");
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(Task.class));
+            Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
@@ -147,7 +147,10 @@ public class TaskJpaController implements Serializable {
     public int getTaskCount() {
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("select count(o) from Task as o");
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Task> rt = cq.from(Task.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
         } finally {
             em.close();

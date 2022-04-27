@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +25,7 @@ import javax.validation.constraints.Size;
  * @author Mirna
  */
 @Entity
-@Table(name = "task")
+@Table(name = "task_")
 @NamedQueries({
     @NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
     @NamedQuery(name = "Task.findByNumber", query = "SELECT t FROM Task t WHERE t.number = :number"),
@@ -31,13 +33,14 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Task.findByDescription", query = "SELECT t FROM Task t WHERE t.description = :description"),
     @NamedQuery(name = "Task.findByResponsible", query = "SELECT t FROM Task t WHERE t.responsible = :responsible"),
     @NamedQuery(name = "Task.findByPriority", query = "SELECT t FROM Task t WHERE t.priority = :priority"),
-    @NamedQuery(name = "Task.findByDeadline", query = "SELECT t FROM Task t WHERE t.deadline = :deadline")})
+    @NamedQuery(name = "Task.findByDeadline", query = "SELECT t FROM Task t WHERE t.deadline = :deadline"),
+    @NamedQuery(name = "Task.findByFinished", query = "SELECT t FROM Task t WHERE t.finished = :finished")})
 public class Task implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "number")
     private Integer number;
     @Basic(optional = false)
@@ -64,6 +67,10 @@ public class Task implements Serializable {
     @Column(name = "deadline")
     @Temporal(TemporalType.DATE)
     private Date deadline;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "finished")
+    private boolean finished;
 
     public Task() {
     }
@@ -72,13 +79,14 @@ public class Task implements Serializable {
         this.number = number;
     }
 
-    public Task(Integer number, String title, String description, String responsible, int priority, Date deadline) {
+    public Task(Integer number, String title, String description, String responsible, int priority, Date deadline, boolean finished) {
         this.number = number;
         this.title = title;
         this.description = description;
         this.responsible = responsible;
         this.priority = priority;
         this.deadline = deadline;
+        this.finished = finished;
     }
 
     public Integer getNumber() {
@@ -127,6 +135,14 @@ public class Task implements Serializable {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
+    }
+
+    public boolean getFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 
     @Override

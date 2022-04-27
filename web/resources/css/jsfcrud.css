@@ -14,8 +14,77 @@ a {
     text-decoration: none;
 }
 
+.richButton {
+    background-color: #90b4bd;
+    border: 2px solid #709da9;
+    border-radius: 2px;
+    width: 60px;
+    height: 30px;
+    
+}
+.richButton:hover:enabled {
+    background-color: #b2d5d6;
+    border: 2px solid #9bc9ca;
+    border-radius: 2px;
+    width: 60px;
+    height: 30px;
+    
+}
+.x-richButton {
+    background-color: #90b4bd;
+    border: 2px solid #709da9;
+    border-radius: 2px;
+    width: 150px;
+    height: 30px;
+}
+
+.x-richButton:hover:enabled {
+    background-color: #b2d5d6;
+    border: 2px solid #9bc9ca;
+    border-radius: 2px;
+    width: 150px;
+    height: 30px;
+}
+
 table {
     empty-cells: show;
+}
+
+input[type=text].create {
+  border: 2px solid #90b4bd;
+  border-radius: 2px;
+  width: 525px;
+  height: 25px;
+}
+
+input[type=text].rd {
+  border: 2px solid #90b4bd;
+  border-radius: 2px;
+  width: 220px;
+  height: 25px;
+}
+
+select {
+  border: 2px solid #90b4bd;
+  border-radius: 2px;
+  width: 215px;
+  height: 25px; 
+}
+input[type=text] {
+  border: 2px solid #90b4bd;
+  border-radius: 2px;
+  width: 240px;
+  height: 25px;
+}
+
+textarea {
+  width: 535px;
+  height: 50px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #90b4bd;
+  border-radius: 2px;
+  resize: vertical;
 }
 
 form.jsfcrud_list_form th, td th {
@@ -64,10 +133,10 @@ form.jsfcrud_list_form td, td td {
     border-left-color: #b2d5d6;
     border-right-color: #b2d5d6;
     vertical-align: baseline;
-    padding-bottom: 7px;
-    padding-top: 7px;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding-bottom: 13px;
+    padding-top: 13px;
+    padding-left: 13px;
+    padding-right: 13px;
 }
 
 tr.jsfcrud_odd_row {

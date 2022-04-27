@@ -29,6 +29,8 @@
                     <h:outputText value="#{taskController.selected.deadline}" title="#{bundle.ViewTaskTitle_deadline}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>
+                    <h:outputText value="#{bundle.ViewTaskLabel_finished}"/>
+                    <h:outputText value="#{taskController.selected.finished}" title="#{bundle.ViewTaskTitle_finished}"/>
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{taskController.destroyAndView}" value="#{bundle.ViewTaskDestroyLink}"/>
@@ -36,9 +38,8 @@
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewTaskEditLink}"/>
                 <br />
-                <h:commandLink action="#{taskController.prepareCreate}" value="#{bundle.ViewTaskCreateLink}" />
                 <br />
-                <h:commandLink action="#{taskController.prepareList}" value="#{bundle.ViewTaskShowAllLink}"/>
+                <h:commandButton action="#{taskController.prepareList}" value="Show All Tasks" styleClass="x-richButton"/>
                 <br />
                 <br />
                 <h:link outcome="/index" value="#{bundle.ViewTaskIndexLink}"/>

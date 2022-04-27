@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class TaskFacade extends AbstractFacade<Task> {
 
-    @PersistenceContext(unitName = "WebTestePU")
+    @PersistenceContext(unitName = "TaskManagerPU")
     private EntityManager em;
 
     @Override
