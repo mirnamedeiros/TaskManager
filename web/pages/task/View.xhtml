@@ -33,17 +33,13 @@
                     <h:outputText value="#{taskController.selected.finished}" title="#{bundle.ViewTaskTitle_finished}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{taskController.destroyAndView}" value="#{bundle.ViewTaskDestroyLink}"/>
+                <h:commandLink action="#{taskController.destroyAndView}" value="Remove"/>
                 <br />
                 <br />
                 <h:link outcome="Edit" value="#{bundle.ViewTaskEditLink}"/>
                 <br />
                 <br />
                 <h:commandButton action="#{taskController.prepareList}" value="Show All Tasks" styleClass="x-richButton"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewTaskIndexLink}"/>
-
             </h:form>
         </ui:define>
     </ui:composition>

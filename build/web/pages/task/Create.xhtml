@@ -14,69 +14,65 @@
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <div align="center">
-            <h:form>
-                
-                <h:panelGrid columns="2" cellpadding="8" cellspacing="5">
-                    
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_title}" for="title" />
-                    <h:inputText id="title" 
-                                 value="#{taskController.selected.title}" 
-                                 title="#{bundle.CreateTaskTitle_title}" 
-                                 required="true" 
-                                 requiredMessage="#{bundle.CreateTaskRequiredMessage_title}"
-                                 styleClass="create"/>
-                    
-                    
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_description}" for="description" />
-                    <h:inputTextarea id="description" 
-                                     value="#{taskController.selected.description}" 
-                                     title="#{bundle.CreateTaskTitle_description}" 
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="8" cellspacing="5">
+                        <h:outputLabel value="#{bundle.CreateTaskLabel_title}" for="title" />
+                        <h:inputText id="title" 
+                                     value="#{taskController.selected.title}" 
+                                     title="#{bundle.CreateTaskTitle_title}" 
                                      required="true" 
-                                     requiredMessage="#{bundle.CreateTaskRequiredMessage_description}"/>
-                    </h:panelGrid> 
-                    <h:panelGrid columns="4" cellpadding="5" cellspacing="5">   
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_responsible}" for="responsible" />
-                    <h:inputText id="responsible" 
-                                 value="#{taskController.selected.responsible}" 
-                                 title="#{bundle.CreateTaskTitle_responsible}" 
-                                 required="true" 
-                                 requiredMessage="#{bundle.CreateTaskRequiredMessage_responsible}"
-                                 styleClass="rd"/>
-                    
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_priority}" for="priority" />
-                    <h:selectOneMenu id="priority" 
-                                     value="#{taskController.selected.priority}" 
+                                     requiredMessage="#{bundle.CreateTaskRequiredMessage_title}"
+                                     styleClass="create"/>
+
+                        <h:outputLabel value="#{bundle.CreateTaskLabel_description}" for="description" />
+                        <h:inputTextarea id="description" 
+                                         value="#{taskController.selected.description}" 
+                                         title="#{bundle.CreateTaskTitle_description}" 
+                                         required="true" 
+                                         requiredMessage="#{bundle.CreateTaskRequiredMessage_description}"/>
+                        </h:panelGrid> 
+                        <h:panelGrid columns="4" cellpadding="5" cellspacing="5">   
+                        <h:outputLabel value="#{bundle.CreateTaskLabel_responsible}" for="responsible" />
+                        <h:inputText id="responsible" 
+                                     value="#{taskController.selected.responsible}" 
+                                     title="#{bundle.CreateTaskTitle_responsible}" 
                                      required="true" 
-                                     requiredMessage="#{bundle.CreateTaskRequiredMessage_priority}"
-                                     > 
-                        <f:selectItem itemValue = "1" itemLabel = "High" /> 
-                        <f:selectItem itemValue = "2" itemLabel = "Medium" /> 
-                        <f:selectItem itemValue = "3" itemLabel = "Low" /> 
-                    </h:selectOneMenu>
-                    
-                    <h:outputLabel value="#{bundle.CreateTaskLabel_deadline}" for="deadline" />
-                    <h:inputText id="deadline" 
-                                 value="#{taskController.selected.deadline}" 
-                                 title="#{bundle.CreateTaskTitle_deadline}" 
-                                 required="true" 
-                                 requiredMessage="#{bundle.CreateTaskRequiredMessage_deadline}"
-                                 styleClass="rd">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    <h:outputText></h:outputText>
-                    <h:outputText></h:outputText>
-                    <h:outputText></h:outputText>
-                    <h:outputText></h:outputText>
-                    <h:outputText></h:outputText>
-                    <h:commandButton action="#{taskController.create}" value="#{bundle.CreateTaskSaveLink}" styleClass="richButton"></h:commandButton>
-                </h:panelGrid>
-                <br />
-                
-                <br />
-                <br />
-                <h:commandButton action="#{taskController.prepareList}" value="Show All Tasks" immediate="true" styleClass="x-richButton"/>
-                
-            </h:form>
+                                     requiredMessage="#{bundle.CreateTaskRequiredMessage_responsible}"
+                                     styleClass="rd"/>
+
+                        <h:outputLabel value="#{bundle.CreateTaskLabel_priority}" for="priority" />
+                        <h:selectOneMenu id="priority" 
+                                         value="#{taskController.selected.priority}" 
+                                         required="true" 
+                                         requiredMessage="#{bundle.CreateTaskRequiredMessage_priority}"
+                                         > 
+                            <f:selectItem itemValue = "1" itemLabel = "High" /> 
+                            <f:selectItem itemValue = "2" itemLabel = "Medium" /> 
+                            <f:selectItem itemValue = "3" itemLabel = "Low" /> 
+                        </h:selectOneMenu>
+
+                        <h:outputLabel value="#{bundle.CreateTaskLabel_deadline}" for="deadline" />
+                        <h:inputText id="deadline" 
+                                     value="#{taskController.selected.deadline}" 
+                                     title="#{bundle.CreateTaskTitle_deadline}" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.CreateTaskRequiredMessage_deadline}"
+                                     styleClass="rd">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                        <h:outputText></h:outputText>
+                        <h:outputText></h:outputText>
+                        <h:outputText></h:outputText>
+                        <h:outputText></h:outputText>
+                        <h:outputText></h:outputText>
+                        <h:commandButton action="#{taskController.create}" value="#{bundle.CreateTaskSaveLink}" styleClass="richButton"></h:commandButton>
+                    </h:panelGrid>
+                    <br />
+                    <br />
+                    <br />
+                    <h:commandButton action="#{taskController.prepareList}" value="Show All Tasks" immediate="true" styleClass="x-richButton"/>
+
+                </h:form>
             </div>
         </ui:define>
     </ui:composition>

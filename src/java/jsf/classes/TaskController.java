@@ -6,7 +6,6 @@ import jsf.classes.util.PaginationHelper;
 import bean.session.TaskFacade;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.ejb.EJB;
 import javax.inject.Named;

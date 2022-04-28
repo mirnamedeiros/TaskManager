@@ -13,37 +13,62 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
-                    
-                    <h:outputLabel value="#{bundle.EditTaskLabel_title}" for="title" />
-                    <h:inputText id="title" value="#{taskController.selected.title}" title="#{bundle.EditTaskTitle_title}" required="true" requiredMessage="#{bundle.EditTaskRequiredMessage_title}"/>
-                    
-                    <h:outputLabel value="#{bundle.EditTaskLabel_description}" for="description" />
-                    <h:inputText id="description" value="#{taskController.selected.description}" title="#{bundle.EditTaskTitle_description}" required="true" requiredMessage="#{bundle.EditTaskRequiredMessage_description}"/>
-                    
-                    <h:outputLabel value="#{bundle.EditTaskLabel_responsible}" for="responsible" />
-                    <h:inputText id="responsible" value="#{taskController.selected.responsible}" title="#{bundle.EditTaskTitle_responsible}" required="true" requiredMessage="#{bundle.EditTaskRequiredMessage_responsible}"/>
-                    
-                    <h:outputLabel value="#{bundle.EditTaskLabel_priority}" for="priority" />
-                    <h:inputText id="priority" value="#{taskController.selected.priority}" title="#{bundle.EditTaskTitle_priority}" required="true" requiredMessage="#{bundle.EditTaskRequiredMessage_priority}"/>
-                    
-                    <h:outputLabel value="#{bundle.EditTaskLabel_deadline}" for="deadline" />
-                    <h:inputText id="deadline" value="#{taskController.selected.deadline}" title="#{bundle.EditTaskTitle_deadline}" required="true" requiredMessage="#{bundle.EditTaskRequiredMessage_deadline}">
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:inputText>
-                    
-                </h:panelGrid>
-                <h:commandButton action="#{taskController.update}" value="#{bundle.EditTaskSaveLink}" styleClass="richButton"></h:commandButton>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditTaskViewLink}"/>
-                <br />
-                <br />
-                <h:commandButton action="#{taskController.prepareList}" value="Show All Tasks" styleClass="x-richButton"/>
-                
-            </h:form>
+            <div align="center">
+                <h:form>
+                    <h:panelGrid columns="2" cellpadding="5" cellspacing="5">
+
+                        <h:outputLabel value="#{bundle.EditTaskLabel_title}" for="title" />
+                        <h:inputText id="title" 
+                                     value="#{taskController.selected.title}" 
+                                     title="#{bundle.EditTaskTitle_title}" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditTaskRequiredMessage_title}"/>
+
+                        <h:outputLabel value="#{bundle.EditTaskLabel_description}" for="description" />
+                        <h:inputText id="description"
+                                     value="#{taskController.selected.description}" 
+                                     title="#{bundle.EditTaskTitle_description}" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditTaskRequiredMessage_description}"/>
+
+                        <h:outputLabel value="#{bundle.EditTaskLabel_responsible}" for="responsible" />
+                        <h:inputText id="responsible" 
+                                     value="#{taskController.selected.responsible}" 
+                                     title="#{bundle.EditTaskTitle_responsible}" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditTaskRequiredMessage_responsible}"/>
+
+                        <h:outputLabel value="#{bundle.EditTaskLabel_priority}" for="priority" />
+                        <h:inputText id="priority" 
+                                     value="#{taskController.selected.priority}" 
+                                     title="#{bundle.EditTaskTitle_priority}" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditTaskRequiredMessage_priority}"/>
+
+                        <h:outputLabel value="#{bundle.EditTaskLabel_deadline}" for="deadline" />
+                        <h:inputText id="deadline" 
+                                     value="#{taskController.selected.deadline}" 
+                                     title="#{bundle.EditTaskTitle_deadline}" 
+                                     required="true" 
+                                     requiredMessage="#{bundle.EditTaskRequiredMessage_deadline}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:inputText>
+                    </h:panelGrid>
+                    <br />
+                    <br />
+                    <h:commandButton action="#{taskController.update}" 
+                                     value="#{bundle.EditTaskSaveLink}" 
+                                     styleClass="richButton"></h:commandButton>
+                    <br />
+                    <br />
+                    <h:commandButton action="#{taskController.prepareList}" 
+                                     value="Show All Tasks" 
+                                     styleClass="x-richButton"/>
+                    <br />
+                    <br />
+                    <h:link outcome="View" value="#{bundle.EditTaskViewLink}"/>
+                </h:form>
+            </div>
         </ui:define>
     </ui:composition>
-
 </html>
